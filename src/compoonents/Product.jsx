@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link } from 'react-router-dom'
 
 
 const Product = ({ value, index }) => {
-  console.log(value.tittle);
   const trumcateString = (str, num) => {
     if (str?.length > num)
       return str.slice(0, num) + '...';
@@ -12,9 +12,12 @@ const Product = ({ value, index }) => {
       return str;
     }
   }
+ const handleOnclick =(value) => console.log(value);
 
   return (
-    <div key={index} className='w-[160px] mb-4 '>
+
+    <div key={index} className='w-[160px] mb-4' onClick={handleOnclick
+    }>
       <div className='px-[4px] py-5 rounded-lg  border-4 bg-white w-[350px] min-h-[400px] cursor-pointer hover:scale-90'>
         <div className='flex flex-col justify-items-center items-center'>
           <div className='w-[150px] h-[200px] mb-10'>
