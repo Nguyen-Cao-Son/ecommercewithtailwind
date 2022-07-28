@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { data } from "autoprefixer";
+import React from "react";
+import { Route, Routes } from "react-router-dom"
+import useGetAllProducts from "./api/hook/useGetProduct";
+import Home from "./pages/Home";
+import {PushDatas,CatchDatas} from "./PushDatas"
+
 
 function App() {
-  return (
+  //  const datas = useGetAllProducts('products')
+  // 
+ 
+  return(
+    <PushDatas>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Home />
     </div>
-  );
+    </PushDatas>
+
+  )
+
 }
 
 export default App;
