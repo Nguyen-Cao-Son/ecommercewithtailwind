@@ -12,8 +12,8 @@ function App() {
   return(
     <PushDatas>
     <div className="App">
-      {/* <Home /> */}
-     <Catalog />
+      <Home />
+     {/* <Catalog /> */}
     </div>
     </PushDatas>
 

@@ -11,7 +11,7 @@ const Header = () => {
     const color = useMagicColor();
     return (
         <div className=''>
-            <div className='flex content-center w-full h-[120px] bg-white justify-center items-center fixed z-[999]'>
+            <div className='flex content-center w-full h-[120px] bg-white justify-center items-center fixed z-[999] clear-both'>
                 <div className='w-1/3'>
                     <ul className='flex mr-16  '>
                         <Link to='/Home'>
