@@ -12,7 +12,7 @@ const Product = ({ value, index }) => {
       return str;
     }
   }
- const handleOnclick =(value) => console.log(value);
+  const handleOnclick = (value) => console.log(value);
 
   return (
 
@@ -23,13 +23,12 @@ const Product = ({ value, index }) => {
           <div className='w-[150px] h-[200px] mb-10'>
             <img classname='w-5 h-auto ' src={value?.image} alt={value?.title} />
           </div>
-          <p className='font-bold text-2xl mb-8'>{trumcateString(value?.title,16) }</p>
+          <p className='font-bold text-2xl mb-8'>{trumcateString(value?.title, 16)}</p>
           <div className='flex flex-row space-x-10 font-bold text-2xl'>
             <p>{value?.price}$</p>
             <FontAwesomeIcon className='mt-1 cursor-pointer text-3xl hover:text-blue-400/70 '
-            icon={faCartPlus} />
+              icon={faCartPlus} />
           </div>
-
         </div>
       </div>
       <div>
