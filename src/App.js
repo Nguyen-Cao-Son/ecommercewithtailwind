@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import {PushDatas} from "./PushDatas"
 import Catalog from "./pages/Catalog"
 import CartPage from "./pages/CartPage";
+import UserPage from "./pages/UserPage";
 
 
 function App() {
@@ -14,8 +15,9 @@ function App() {
     <PushDatas>
     <div className="App">
       {/* <Home /> */}
-     {/* <Catalog /> */}
-     <CartPage />
+     <Catalog />
+     {/* <CartPage /> */}
+     {/* <UserPage /> */}
     </div>
     </PushDatas>
 

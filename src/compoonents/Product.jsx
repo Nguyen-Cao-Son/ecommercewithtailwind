@@ -12,7 +12,9 @@ const Product = ({ value, index }) => {
       return str;
     }
   }
-  const handleOnclick = (value) => console.log(value);
+  const handleOnclick = (value) => {
+    
+  }
 
   return (
 

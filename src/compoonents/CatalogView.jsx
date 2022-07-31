@@ -2,20 +2,28 @@ import React, { useState, useContext, useEffect } from 'react'
 import { CatchDatas } from '../PushDatas'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons"
+import { useDispatch } from 'react-redux/es/exports'
+import { CartSlice } from './CartSlice'
 
 
 const CatalogView = () => {
     const datas = useContext(CatchDatas)
+    const dispatch = useDispatch();
     useEffect(() => {
-        const data = datas.find((value,)=>
-            value.id === 1)
+        const data = datas.find((value) =>
+            value.id === 6)
         if (data) {
             setProduct(data)
         }
     }
         , [datas])
     const [product, setProduct] = useState({})
-    console.log(product);
+    console.log('product:', product.id);
+    const handleOnclickAddtoCart = () =>{
+        dispatch(
+            CartSlice.actions.addToCart(product.id)
+        )
+    }
     return (
         <div>
             <div className='w-full bg-slate-300  min-h-[570px] '>
@@ -36,7 +44,7 @@ const CatalogView = () => {
                             <div>
                                 <button className='flex justify-items-center items-center w-[500px] h-10 border-4 rounded-lg bg-blue-800 justify-center hover:opacity-70'>
                                     <FontAwesomeIcon className='text-white' icon={faCartPlus} />
-                                    <p className='text-white'>ADD TO CART</p>
+                                    <p className='text-white' onClick={handleOnclickAddtoCart}   >ADD TO CART</p>
                                 </button>
                             </div>
                         </div>
