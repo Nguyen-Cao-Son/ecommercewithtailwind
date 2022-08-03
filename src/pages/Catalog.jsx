@@ -1,7 +1,7 @@
 import React from 'react'
 import Footer from '../compoonents/Footer'
 import Header from '../compoonents/Header'
-import CatalogView from '../compoonents/CatalogView'
+import CatalogView from '../compoonents/Product/CatalogView'
 
 const Catalog = () => {
   return (

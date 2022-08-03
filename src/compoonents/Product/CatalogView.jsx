@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { CatchDatas } from '../PushDatas'
+import { CatchDatas } from '../../PushDatas'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons"
 import { useDispatch } from 'react-redux/es/exports'
-import { CartSlice } from './CartSlice'
+import { addtoCart } from '../Cart/CartSlice'
+import CartSlice from '../Cart/CartSlice'
 
 
 const CatalogView = () => {
@@ -20,9 +21,10 @@ const CatalogView = () => {
     const [product, setProduct] = useState({})
     console.log('product:', product.id);
     const handleOnclickAddtoCart = () =>{
-        dispatch(
-            CartSlice.actions.addToCart(product.id)
-        )
+        // dispatch(
+        //     CartSlice.actions.addToCart(product.id)
+        // )
+        dispatch(addtoCart(product))
     }
     return (
         <div>
@@ -42,9 +44,9 @@ const CatalogView = () => {
                                 <p className='font-bold text-2xl text-black mr-20'>Count:{product?.rating?.count}</p>
                             </div>
                             <div>
-                                <button className='flex justify-items-center items-center w-[500px] h-10 border-4 rounded-lg bg-blue-800 justify-center hover:opacity-70'>
+                                <button  onClick={handleOnclickAddtoCart}    className='flex justify-items-center items-center w-[500px] h-10 border-4 rounded-lg bg-blue-800 justify-center hover:opacity-70'>
                                     <FontAwesomeIcon className='text-white' icon={faCartPlus} />
-                                    <p className='text-white' onClick={handleOnclickAddtoCart}   >ADD TO CART</p>
+                                    <p className='text-white'  >ADD TO CART</p>
                                 </button>
                             </div>
                         </div>

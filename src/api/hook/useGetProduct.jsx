@@ -1,18 +1,13 @@
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
+// import { REACT_API } from 'process.env'
 import axiosHelper from '../axiosHelper'
 
-function useGetAllProducts(call) {
-    const [state, setState] = useState([])
-    useEffect(() => {
-        const getData = async () => {
-            let response = await axiosHelper.get(call)
-            return response}
-        getData()
-        .then((res) => {
-            setState(res.data)
-            console.log('call')
-        })},[])
-    return state
+function useGetAllProducts() {
+    const getAllProducts = async () => {
+        let respone = await axiosHelper.get('products')
+        return respone.data
+    }
+    console.log(getAllProducts());
+    return getAllProducts 
 }
-
 export default useGetAllProducts

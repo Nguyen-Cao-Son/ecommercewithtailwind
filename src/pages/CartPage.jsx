@@ -1,11 +1,20 @@
-import React from 'react'
-import useGetAllProducts from '../api/hook/useGetProduct'
+import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import Header from '../compoonents/Header'
+import Footer from '../compoonents/Footer'
+import useGetCart from '../api/hook/useGetCart'
+import { getCarts } from '../compoonents/Cart/CartSlice'
+import Carts from '../compoonents/Cart/Carts'
+
 
 const CartPage = () => {
-    const dataCart = useGetAllProducts('carts')
-    console.log(dataCart);
+              
   return (
-    <div>CartPage</div>
+    <div>
+      <Header />
+      <Carts />
+      <Footer />
+    </div>
   )
 }
 

@@ -13,7 +13,7 @@ const Product = ({ value, index }) => {
     }
   }
   const handleOnclick = (value) => {
-    
+
   }
 
   return (

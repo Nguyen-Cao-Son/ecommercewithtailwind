@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import Product from './Product'
-import { CatchDatas } from '../PushDatas'
+import { CatchDatas } from '../../PushDatas'
 
 
 const Products = () => {

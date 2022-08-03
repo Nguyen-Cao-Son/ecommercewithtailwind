@@ -1,14 +1,10 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass, faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons'
-import useMagicColor from '../api/hook/useMagicColor'
 import { Link } from 'react-router-dom'
 
-
-
-
 const Header = () => {
-    const color = useMagicColor();
+
     return (
         <div className=''>
             <div className='flex content-center w-full h-[120px] bg-white justify-center items-center fixed z-[999] clear-both'>
