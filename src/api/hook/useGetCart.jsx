@@ -1,7 +1,7 @@
 import axiosHelper  from "../axiosHelper";
 function useGetCart () {
   const getCart = async () => {
-    const res = await axiosHelper('Carts/1')
+    const res = await axiosHelper.get('Carts/1')
     return res.data
   }
   return getCart

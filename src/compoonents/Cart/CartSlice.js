@@ -1,7 +1,8 @@
 import React from 'react'
-import { createSlice,createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import useGetAllProducts from '../../api/hook/useGetProduct';
 import axiosHelper from '../../api/axiosHelper';
+import { Result } from 'postcss';
 
 
 //  const  GetUserCart = () => {
@@ -12,86 +13,80 @@ import axiosHelper from '../../api/axiosHelper';
 // }
 
 const CartSlice = createSlice({
-  name: 'cart',
+  name: 'carts',
   initialState: {
     status: 'idle',
-    cart:{
-      id: '',
-      userId:'',
-      date:'',
-      products:[]
+    carts: {
     }
-  
   },
   reducers: {
     addToCart: (state, action) => {
-      if (state.cart.productId === action.payload) {
-        state.cart.quantity = (state.cart.quantity) *1+1;
+      //  state.carts = action.payload
+      const productId = action.payload.id
+      console.log('productId', productId)
+      const product = () => {
+        const value = state
+        return value
       }
-      else {
-        state.cart.quantity = 1;
-      }
-      state.cart.productId = action.payload
-      console.log('quantity',state.cart.quantity)
+      console.log(state?.cart?.carts)
+      console.log(product())
+
     },
-    removeToCart:(state,action)=>{
-      if (state.cart.productId === action.payload) {
-        if(state.cart.quantity>0){
-          state.cart.quantity = (state.cart.quantity) * 1 - 1;
+    removeToCart: (state, action) => {
+      if (state.carts.productId === action.payload) {
+        if (state.carts.quantity > 0) {
+          state.carts.quantity = (state.carts.quantity) * 1 - 1;
         }
-        else{
-          //gở khỏi cart 
+        else {
         }
       }
       else {
-        state.cart.quantity = 1;
+        state.carts.quantity = 1;
       }
-      state.cart.productId = action.payload
-      console.log('quantity',state.cart.quantity)
+      state.carts.productId = action.payload
+      console.log('quantity', state.carts.quantity)
     }
   },
 
   extraReducers: (builder) => {
-    builder 
-     .addCase(getCarts.pending , (state,action)=>
-     {
-      state.status = 'loading';
-     })
-     .addCase(getCarts.fulfilled ,(state,action)=>{
-      state.status = 'idle';
-      state.cart = action.payload.data;
-      console.log(state.cart)  
-     })
+    builder
+      .addCase(getCartsFromApi.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getCartsFromApi.fulfilled, (state, action) => {
+        state.status = 'done';
+        state.carts = action.payload.data;
+      })
   }
 })
 
 //action (object) và action creators () => return action)(object) vd addToCart ở trên 
 // thunk action (function) và thunk action creator ()=> {return: thunk action }
-export default CartSlice 
+export default CartSlice
 
 
 //*thunk action creator ------------------------------------------------------------------------------------------ 
-export const getCarts = createAsyncThunk('cart/getCarts/',async ()=> {
+export const getCartsFromApi = createAsyncThunk('carts/getCarts/', async () => {
   const res = await axiosHelper.get('carts/1')
-  console.log(res)
-   return res 
+  console.log('getcarts', res)
+  return res
 })
 //thunk redux 
 export function addtoCart(addto) { // thunk action creator 
   return function addToCartThunk(dispatch, getState) {
-    console.log('state',getState())
-    console.log(addto)
-    dispatch(CartSlice.actions.addToCart(addto.id))
-    console.log('state after get ',getState())  
+    console.log('state', getState())
+    console.log('value', addto)
+    dispatch(CartSlice.actions.addToCart(addto))
+    console.log('state after get ', getState())
   } //thunk action
 }
 
 export function removeToCart(addto) { // thunk action creator 
   return function removeToCartThunk(dispatch, getState) {
-    console.log('state',getState())
-    console.log(addto)
+    console.log('state', getState())
+    // console.log(addto)
     dispatch(CartSlice.actions.removeToCart(addto.id))
-    console.log('state after get ',getState())  
+    // console.log('state after get ',getState())  
   } //thunk action
 }
 

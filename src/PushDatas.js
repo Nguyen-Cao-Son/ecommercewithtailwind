@@ -12,7 +12,7 @@ const PushDatas = ({ children }) => {
         datas().then(res=>{
             setProducts(res)})
         },[data])
-    console.log(products)
+    // console.log(products)
     return (
         <CatchDatas.Provider value={products}>
             {children}

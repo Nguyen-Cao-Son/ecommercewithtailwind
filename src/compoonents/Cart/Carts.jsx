@@ -6,45 +6,42 @@ import useGetCart from '../../api/hook/useGetCart';
 import { useContext } from 'react';
 import CartView from './CartView';
 import { CatchDatas } from '../../PushDatas';
-import { addtoCart } from './CartSlice';
+import CartSlice,{  getCartsFromApi  }  from './CartSlice';
+import { useSelector } from 'react-redux';
+
+
 
 const Carts = () => {
+  const dispatch = useDispatch()
   const [quantity, setQuantity] = useState(0)
-  const dispatch = useDispatch();
-  const [carts, setCarts] = useState({})
-  const datas = useGetCart()
+  const [carts, setCarts] = useState([])
+  const status = useSelector(state => state?.cart?.status)
+  const state = useSelector(state => state?.cart?.carts)
+  const productData = carts?.products 
+  useEffect(()=>{
+    dispatch(getCartsFromApi())
+  },[])
   useEffect(() => {
-    datas().then(res => setCarts(res))
-    const data = dispatch(getCarts(carts))
-  }, [])
+    setCarts(pre=>pre=state)
+    setQuantity(cart?.map((value)=> value?.quantity))
+    console.log('quantity',quantity)
+  }, [status])
+  console.log(carts);
   const productsData = useContext(CatchDatas)
-  const cartData = carts.products
-  const cart = cartData?.map((value, index) => {
-    const products = 
-      productsData?.filter((valueProducts) => {return valueProducts.id === value.productId})
+  const cart = productData?.map((value, index) => {
+    const products =
+      productsData?.filter((valueProducts) => { return valueProducts.id === value.productId })
     return {
-      ...products 
-      ,
+      ...products,
       quantity: value?.quantity
     }
   })
-  console.log(cart);
-  //get qauntity of product from variavle cart ------------------------------------------
-  useEffect(
-    () => {
-      if (cart) {
-        setQuantity(cart?.map((value) => value?.quantity))
-      }
-    }
-    , [])
+
   console.log('quantity :', quantity);
-  const handleClickPlus = (value) =>{
-    dispatch(addtoCart(value))
-    setQuantity(quantity+1)
-  }
+
   return (
-    <div className='w-full min-h-[600px] bg-slate-400  flex justify-items-center items-center'>
-      <div className='w-[80%] h-[80%] bg-slate-200 flex flex-row  '>
+    <div className='w-full min-h-[700px] bg-slate-400  flex justify-items-center items-center m-auto justify-center'>
+      <div className='w-[80%] h-[400px] bg-slate-200 flex flex-row  '>
         {
           cart?.map(value => {
             return (
@@ -53,11 +50,7 @@ const Carts = () => {
                   <CartView data={value} />
                 </div>
                 <div >
-                  <button onClick={handleClickPlus(value)} className='text-3xl'>+</button>
-                  <span>{value.quantity}</span>
-                  <button>-</button>
                 </div>
-
               </div>
             )
 
