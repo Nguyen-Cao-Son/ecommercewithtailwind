@@ -2,7 +2,7 @@ import React from 'react'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import useGetAllProducts from '../../api/hook/useGetProduct';
 import axiosHelper from '../../api/axiosHelper';
-import { Result } from 'postcss';
+
 
 
 //  const  GetUserCart = () => {
@@ -21,16 +21,15 @@ const CartSlice = createSlice({
   },
   reducers: {
     addToCart: (state, action) => {
-      //  state.carts = action.payload
-      const productId = action.payload.id
-      console.log('productId', productId)
-      const product = () => {
-        const value = state
-        return value
+     const itemindex = state?.carts?.products.findIndex(item =>
+      item?.productId === action.payload)
+      console.log('item index',itemindex);
+      if(itemindex>=0 ){
+        state.carts.products[itemindex].quantity += 1
+        console.log(state.carts.products[itemindex]);
       }
-      console.log(state?.cart?.carts)
-      console.log(product())
-
+      
+      // const tempProduct = {...action.payload,quantity :1 }
     },
     removeToCart: (state, action) => {
       if (state.carts.productId === action.payload) {
