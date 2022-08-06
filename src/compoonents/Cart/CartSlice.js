@@ -19,31 +19,32 @@ const CartSlice = createSlice({
     carts: {
     }
   },
+
   reducers: {
     addToCart: (state, action) => {
-     const itemindex = state?.carts?.products.findIndex(item =>
-      item?.productId === action.payload)
-      console.log('item index',itemindex);
-      if(itemindex>=0 ){
+      const itemindex = state?.carts?.products.findIndex(item =>
+        item?.productId === action.payload)
+      console.log('item index', itemindex);
+      if (itemindex >= 0) {
         state.carts.products[itemindex].quantity += 1
         console.log(state.carts.products[itemindex]);
       }
-      
       // const tempProduct = {...action.payload,quantity :1 }
     },
+
     removeToCart: (state, action) => {
-      if (state.carts.productId === action.payload) {
-        if (state.carts.quantity > 0) {
-          state.carts.quantity = (state.carts.quantity) * 1 - 1;
+      const itemindex = state?.carts?.products.findIndex(item =>
+        item?.productId === action.payload)
+      console.log('item index', itemindex);
+      if (itemindex >= 0) {
+        if (state.carts.products[itemindex].quantity === 0) {
+          state.carts.products[itemindex] = {}
         }
         else {
+          state.carts.products[itemindex].quantity -= 1
         }
+        console.log(state.carts.products[itemindex]);
       }
-      else {
-        state.carts.quantity = 1;
-      }
-      state.carts.productId = action.payload
-      console.log('quantity', state.carts.quantity)
     }
   },
 
@@ -63,7 +64,6 @@ const CartSlice = createSlice({
 // thunk action (function) và thunk action creator ()=> {return: thunk action }
 export default CartSlice
 
-
 //*thunk action creator ------------------------------------------------------------------------------------------ 
 export const getCartsFromApi = createAsyncThunk('carts/getCarts/', async () => {
   const res = await axiosHelper.get('carts/1')
@@ -82,10 +82,8 @@ export function addtoCart(addto) { // thunk action creator
 
 export function removeToCart(addto) { // thunk action creator 
   return function removeToCartThunk(dispatch, getState) {
-    console.log('state', getState())
-    // console.log(addto)
-    dispatch(CartSlice.actions.removeToCart(addto.id))
-    // console.log('state after get ',getState())  
+    dispatch(CartSlice.actions.removeToCart(addto))
+    
   } //thunk action
 }
 

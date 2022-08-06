@@ -47,13 +47,14 @@ const Carts = () => {
         {
           cart?.map(value => {
             return (
-              <div key={value?.id} className='w-[30%] h-[400px]'>
-                <div>
-                  <CartView data={value} />
-                </div>
-                <div >
-                </div>
-              </div>
+                  <div key={value?.id} className='w-[30%] h-[400px]'>
+                    <div>
+                      <CartView data={value} />
+                    </div>
+                    <div >
+                    </div>
+                  </div>
+              
             )
 
           })
