@@ -6,6 +6,8 @@ import Catalog from "./pages/Catalog"
 import CartPage from "./pages/CartPage";
 import UserPage from "./pages/UserPage";
 import useGetAllProducts from "./api/hook/useGetProduct";
+import FormAddProduct from "./pages/FormAddProduct";
+
 
 
 function App() {
@@ -14,9 +16,10 @@ function App() {
   return (
     <PushDatas>
       <div className="App">
+        <FormAddProduct />
         {/* <Home /> */}
         {/* <Catalog /> */}
-        <CartPage />
+        {/* <CartPage /> */}
         {/* <UserPage /> */}
       </div>
     </PushDatas>

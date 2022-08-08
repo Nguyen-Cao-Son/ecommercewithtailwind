@@ -7,7 +7,6 @@ function useGetAllProducts() {
         let respone = await axiosHelper.get('products')
         return respone.data
     }
-    console.log(getAllProducts());
-    return getAllProducts 
+    return getAllProducts
 }
 export default useGetAllProducts

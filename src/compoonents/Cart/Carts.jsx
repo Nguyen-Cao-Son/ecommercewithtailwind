@@ -43,11 +43,11 @@ const Carts = () => {
 
   return (
     <div className='w-full min-h-[700px] bg-slate-400  flex justify-items-center items-center m-auto justify-center'>
-      <div className='w-[80%] h-[400px] bg-slate-200 flex flex-row  '>
+      <div className='w-[80%] h-[400px] bg-white flex flex-row  '>
         {
           cart?.map(value => {
             return (
-                  <div key={value?.id} className='w-[30%] h-[400px]'>
+                  <div key={value?.id} className='w-[30%] h-[400px] flex justify-items-center'>
                     <div>
                       <CartView data={value} />
                     </div>

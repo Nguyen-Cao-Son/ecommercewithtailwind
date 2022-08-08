@@ -28,8 +28,8 @@ const Product = ({ value, index }) => {
           <p className='font-bold text-2xl mb-8'>{trumcateString(value?.title, 16)}</p>
           <div className='flex flex-row space-x-10 font-bold text-2xl'>
             <p>{value?.price}$</p>
-            <FontAwesomeIcon className='mt-1 cursor-pointer text-3xl hover:text-blue-400/70 '
-              icon={faCartPlus} />
+            {/* <FontAwesomeIcon className='mt-1 cursor-pointer text-3xl hover:text-blue-400/70 '
+              icon={faCartPlus} /> */}
           </div>
         </div>
       </div>

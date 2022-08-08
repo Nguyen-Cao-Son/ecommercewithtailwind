@@ -11,11 +11,17 @@ const Header = () => {
                 <div className='w-1/3'>
                     <ul className='flex mr-16  '>
                         <Link to='/Home'>
-                            <li className='mx-4 font-bold text-blue-600 cursor-pointer'>TRANG CHỦ</li>
+                            <li className='mx-4 font-bold text-blue-600 cursor-pointer'>HOME PAGE</li>
                         </Link>
-                        <li className='mx-4 font-bold text-blue-600 cursor-pointer'>SẢN PHẨM</li>
-                        <li className='mx-4 font-bold text-blue-600 cursor-pointer'>PHỤ KIỆN</li>
-                        <li className='mx-4 font-bold text-blue-600 cursor-pointer'>LIÊN HỆ</li>
+                        <li className='mx-4 font-bold text-blue-600 cursor-pointer'>
+                            PRODUCT
+                          
+                        </li>
+                        {/* <li className='mx-4 font-bold text-blue-600 cursor-pointer'></li> */}
+                        <li className='mx-4 font-bold text-blue-600 cursor-pointer'>
+                            {/* <Link to={/Footer}> CONTACT </Link> */}
+                            CONTACT
+                        </li>
                     </ul>
                 </div>
                 <div className=' block items-center font-bold text-blue-600 text-5xl mr-6'>
