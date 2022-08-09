@@ -1,19 +1,20 @@
-import formValidate from "./fromValidate"
+import { formValidate } from "./fromValidate"
 
 
-const FormRule = ({ ...Option }) => {
+const FormRule = (Option, newDatas) => {
+    // console.log('data',newDatas);
     let invalid = true
     const formElement = Option.form.current
     const formGroupElement = Option.formGroup.current
     const submitElement = Option.submit.current
-
     if (formElement) {
         if (formGroupElement) {
             formValidate(Option)
         }
         if (submitElement) {
             if (invalid) {
-                formElement.onsubmit = function (e) {
+                formElement.onsubmit = (e) => {
+                    console.log(newDatas)
                     e.preventDefault();
                     const invalidCheck = formValidate(Option)
                     if (invalidCheck) {
@@ -34,13 +35,13 @@ const FormRule = ({ ...Option }) => {
                         })
                         invalid = false;
                     }
-
                     else {
                         invalid = true
+
                     }
                 }
             }
-            else {}
+
         }
     }
 

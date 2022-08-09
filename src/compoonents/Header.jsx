@@ -24,10 +24,10 @@ const Header = () => {
                         </li>
                     </ul>
                 </div>
-                <div className=' block items-center font-bold text-blue-600 text-5xl mr-6'>
+                <div className=' block items-center font-bold text-blue-600 text-5xl mr-7 '>
                     E-COMMERCE
                 </div>
-                <div className='w-1/3 flex justify-center items-center place-content-between text-2xl cursor-pointer'>
+                <div className='w-1/3 flex justify-center items-center place-content-between text-2xl cursor-pointer '>
                     <i className='mx-10 text-blue-600' >
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </i>

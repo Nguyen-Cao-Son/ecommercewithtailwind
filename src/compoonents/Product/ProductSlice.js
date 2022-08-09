@@ -2,30 +2,16 @@ import React from 'react'
 import { createSlice,createAsyncThunk } from '@reduxjs/toolkit'
 import axiosHelper from '../../api/axiosHelper';
 
-//  const  GetUserCart = () => {
-//   const data = useGetAllProducts('carts')
-//   const userCart =data.find((value)=>
-//   value.id===1 )
-//   return userCart
-// }
 
 const ProductsSlice = createSlice({
-  name: 'cart',
+  name: 'product',
   initialState: {
     status: 'idle',
-    cart:[]
+    products:[]
   
   },
   reducers: {
     getAllProducts: (state, action) => {
-      if (state.cart.productId === action.payload) {
-        state.cart.quantity = (state.cart.quantity) * 1 + 1;
-      }
-      else {
-        state.cart.quantity = 1;
-      }
-      state.cart.productId = action.payload
-      console.log('quantity',state.cart.quantity)
     }
   },
   extraReducers: (builder) => {
@@ -35,8 +21,8 @@ const ProductsSlice = createSlice({
       state.status = 'loading';
      })
      .addCase(getProduct.fulfilled ,(state,action)=>{
-      state.status = 'idle';
-      state.cart = action.payload;
+      state.status = 'done';
+      state.products = action.payload.data;
      })
   }
 })
@@ -47,8 +33,8 @@ export default ProductsSlice
 
 
 //*thunk action creator ------------------------------------------------------------------------------------------ 
-export const getProduct = createAsyncThunk('cart/getCarts/',async ()=> {
-  const res = await axiosHelper.get('carts')
+export const getProduct = createAsyncThunk('product/getProducts/',async ()=> {
+  const res = await axiosHelper.get('products')
    return res 
 })
 //thunk redux 

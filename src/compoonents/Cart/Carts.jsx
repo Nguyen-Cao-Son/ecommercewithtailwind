@@ -18,6 +18,7 @@ const Carts = () => {
   const status = useSelector(state => state?.cart?.status)
   const state = useSelector(state => state?.cart?.carts)
   const productData = carts?.products
+
   useEffect(() => {
     dispatch(getCartsFromApi())
   }, [])
@@ -25,12 +26,10 @@ const Carts = () => {
   useEffect(() => {
     setCarts(pre => pre = state)
     setQuantity(cart?.map((value) => value?.quantity))
-    console.log('quantity', quantity)
   }, [state])
 
-
   const productsData = useContext(CatchDatas)
-  const cart = productData?.map((value, index) => {
+  const cart = productData?.map((value) => {
     const products =
       productsData?.filter((valueProducts) => { return valueProducts.id === value.productId })
     return {
@@ -47,18 +46,16 @@ const Carts = () => {
         {
           cart?.map(value => {
             return (
-                  <div key={value?.id} className='w-[30%] h-[400px] flex justify-items-center'>
-                    <div>
-                      <CartView data={value} />
-                    </div>
-                    <div >
-                    </div>
-                  </div>
-              
+              <div key={value?.id} className='w-[30%] h-[400px] flex justify-items-center'>
+                <div>
+                  <CartView data={value} />
+                </div>
+                <div >
+                </div>
+              </div>
             )
-
-          })
-
+          }
+          )
         }
       </div>
     </div>
