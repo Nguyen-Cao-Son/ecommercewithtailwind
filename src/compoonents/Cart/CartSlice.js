@@ -82,6 +82,7 @@ export function addtoCart(addto) { // thunk action creator
 
 export function removeToCart(addto) { // thunk action creator 
   return function removeToCartThunk(dispatch, getState) {
+  
     dispatch(CartSlice.actions.removeToCart(addto))
 
   } //thunk action

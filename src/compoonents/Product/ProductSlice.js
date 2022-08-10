@@ -12,6 +12,9 @@ const ProductsSlice = createSlice({
   },
   reducers: {
     getAllProducts: (state, action) => {
+    },
+    addtoProducts : (state,action) => {
+      state.products.push(action.payload)
     }
   },
   extraReducers: (builder) => {

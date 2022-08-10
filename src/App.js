@@ -16,9 +16,9 @@ function App() {
   return (
     <PushDatas>
       <div className="App">
-        <FormAddProduct />
         {/* <Home /> */}
         {/* <Catalog /> */}
+        <FormAddProduct />
         {/* <CartPage /> */}
         {/* <UserPage /> */}
       </div>

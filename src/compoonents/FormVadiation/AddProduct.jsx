@@ -6,6 +6,10 @@ import { isReQuired, isUrl } from './rules'
 import { useDispatch } from 'react-redux'
 import { getProduct } from '../Product/ProductSlice'
 import { useSelector } from 'react-redux/es/exports'
+import { formValidateOnSubmit } from './fromValidate'
+import { faCircleRight } from '@fortawesome/free-regular-svg-icons'
+import FormProductsSlice,{addtoFormProducts} from './FormProductSlice'
+
 
 const AddProduct = () => {
 
@@ -28,8 +32,28 @@ const AddProduct = () => {
     const [description, setDescription] = useState('')
     const [image, setImage] = useState('')
     const dispatch = useDispatch()
+    const submitElement = btnSubmit.current
 
 
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const invalid = formValidateOnSubmit(elementForm)
+        console.log('invalid ', invalid)
+        console.log(datas);
+        if(invalid){
+            dispatch(addtoFormProducts(datas))
+        }
+    }
+     
+    // const handleSubmit = useRef(
+    //     (e) => {
+    //         e.preventDefault();
+    //         const invalid = formValidateOnSubmit(elementForm)
+    //         console.log('invalid ', invalid)
+    //         console.log(datas);
+    //     }
+    // )
     useEffect(() => {
         dispatch(getProduct())
         setProducts(productsData)
@@ -51,6 +75,7 @@ const AddProduct = () => {
         setImage(inputImage?.current?.value)
     }
 
+
     const elementForm = {
         form: form,
         formGroup: formGroup,
@@ -64,12 +89,10 @@ const AddProduct = () => {
             isReQuired(inputImage),
         ]
     }
-    useEffect(() => {
-        setDatas(addProducts({ tittle, price, description, cataloge, image }))
-    }, [])
-    function addProducts({ title, price, description, cataloge, image }) {
+
+    function addProducts({ tittle, price, description, cataloge, image }) {
         return {
-            title,
+            tittle,
             price,
             description,
             cataloge,
@@ -78,18 +101,25 @@ const AddProduct = () => {
         }
     }
 
+    useEffect(() => {
+        setDatas(addProducts({ tittle, price, description, cataloge, image }))
+        submitElement?.addEventListener('click', handleSubmit)
+        return () => { //clean up function
+            submitElement?.removeEventListener('click', handleSubmit)
+        }
+    }
+        , [tittle,price,description,cataloge,image])
     FormRule(elementForm, datas)
-
-
     return (
         <>
             <div className='w-full h-[120px] block contents-none mr-0 '></div>
-            <div className=' w-full h-[10px] '></div>
-            <div className='my-[10px] flex justify-center items-center bg-ecomBg mb-[20px]  '>
+            <div className='my-[0px] flex justify-center items-center flex-col bg-ecomBg mb-[20px]  '>
+                <div className=' w-full h-[15px] flex justify-center items-center '></div>
                 <div id='form' className='rounded-max  border-2 border-white  w-[30%] bg-white/100 ' >
                     <div className='flex flex-col justify-items-center items-center mt-[15px]'>
                         <div className='text-4xl text-blue-600 font-extrabold content-center'>Form Add Product</div>
                     </div>
+
                     <form className='w-[100%] flex  flex-col justify-items-center items-center form-1' ref={form} >
 
                         <div className='w-[100%] ml-[32px] form-group my-4 mt-4  translate-x-[12%] justify-center items-center' ref={formGroup}>
@@ -152,13 +182,14 @@ const AddProduct = () => {
                             </div>
                         </div>
 
-                        <div className='flex justify-center items-center w-[40%]  translate-x-[70%]'>
-                            <div className='w-[100%] rounded-lg border-black bg-black text-white flex justify-center items-center mb-4 hover:bg-cyan-300/50 hover:text-black h-8 ' ref={btnSubmit} >
+                        <div className='flex justify-center items-center w-[40%]  translate-x-[70%]' ref={btnSubmit}  >
+                            <div className='w-[100%] rounded-lg border-black bg-black text-white flex justify-center items-center mb-4 hover:bg-cyan-300/50 hover:text-black h-8 ' >
                                 <button type='submit' className='w-[80%] rounded-lg border-black '> add product for sell </button>
                             </div>
                         </div>
                     </form>
                 </div>
+                <div className=' w-full h-[15px] flex justify-center items-center '></div>
             </div>
         </>
     )
