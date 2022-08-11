@@ -2,13 +2,11 @@ import React, { useState, useEffect, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import FormRule from './FormRule'
-import { isReQuired, isUrl } from './rules'
+import { isReQuired } from './rules'
 import { useDispatch } from 'react-redux'
-import { getProduct } from '../Product/ProductSlice'
 import { useSelector } from 'react-redux/es/exports'
 import { formValidateOnSubmit } from './fromValidate'
-import { faCircleRight } from '@fortawesome/free-regular-svg-icons'
-import FormProductsSlice,{addtoFormProducts} from './FormProductSlice'
+import {addtoFormProducts} from './FormProductSlice'
 
 
 const AddProduct = () => {
@@ -54,10 +52,7 @@ const AddProduct = () => {
     //         console.log(datas);
     //     }
     // )
-    useEffect(() => {
-        dispatch(getProduct())
-        setProducts(productsData)
-    }, [products])
+  
 
     const handleOnchangeInputTittle = () => {
         setTittle(inputTittle?.current?.value)
